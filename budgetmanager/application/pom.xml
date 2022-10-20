@@ -26,9 +26,9 @@
             <version>13</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>usersettings</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.alphateam.budgetmanager</groupId>
+            <artifactId>core</artifactId>
+            <version>0.1.0</version>
         </dependency>
     </dependencies>
     <build>

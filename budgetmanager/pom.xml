@@ -38,7 +38,7 @@
           
         
     <module>application</module>
-      
+    <module>core</module>
   </modules>
     
 
