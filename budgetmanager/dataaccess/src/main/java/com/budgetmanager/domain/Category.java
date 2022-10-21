@@ -1,4 +1,4 @@
-package com.budgetmanager.dataaccess.domain;
+package com.budgetmanager.domain;
 
 import java.util.Set;
 import javax.persistence.Entity;

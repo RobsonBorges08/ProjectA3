@@ -1,4 +1,4 @@
-package com.budgetmanager.dataaccess.domain;
+package com.budgetmanager.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
