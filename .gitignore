@@ -19,5 +19,4 @@
 *.tar.gz
 *.rar
 javafx-sdk-19/
-
 target/
