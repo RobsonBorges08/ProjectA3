@@ -3,34 +3,51 @@
           
   
     
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
           
   
     
-    <groupId>com.alphateam</groupId>
-    <artifactId>budgetmanager</artifactId>
-  
-    
-    <version>0.1.0</version>
+  <groupId>com.alphateam</groupId>
           
   
+<<<<<<< HEAD
     
-    <packaging>pom</packaging>
-    
+  <artifactId>budgetmanager</artifactId>
+          
+=======
     <modules>
+      
         <module>application</module>
-        <module>core</module>
         <module>dataaccess</module>
     </modules>
+>>>>>>> main
+  
     
-    <properties>
+  <version>0.1.0</version>
+          
+  
+    
+  <packaging>pom</packaging>
+          
+  
+    
+  <properties>
                     
     
         
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
                 
   
     
-    </properties>
+  </properties>
+    
+    
+  <modules>
+          
+        
+    <module>application</module>
+    <module>core</module>
+  </modules>
+    
 
 </project>
