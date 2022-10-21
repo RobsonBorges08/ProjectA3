@@ -18,5 +18,8 @@
         <property name="generated_statistics">true</property>
         <property name="use_sql_comments">true</property>
         <!-- Object Mapping-->
+        <mapping class="com.budgetmanager.domain.Category" />
+        <mapping class="com.budgetmanager.domain.Product" />
+        <mapping class="com.budgetmanager.domain.Supplier" />
     </session-factory>
 </hibernate-configuration>
