@@ -1,4 +1,4 @@
-package com.alphateam.application;
+package com.budgetmanager.application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package com.alphateam.application;
+package com.budgetmanager.application;
 
 public class PrimaryController {
     
