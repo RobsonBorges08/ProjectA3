@@ -1,3 +1,2 @@
 cd budgetmanager
-mvn clean package
-PAUSE
+mvn clean package && cd ..
