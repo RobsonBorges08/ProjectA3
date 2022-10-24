@@ -10,10 +10,10 @@ import com.budgetmanager.core.exceptions.InvalidSceneException;
 
 public abstract class SceneFactory implements Initializable {
     
-    private static final Class CONTROLLER_CLASS = null;
-    private static final String FXML_BASE_NAME = "";
-    private static final double WIDTH = -1;
-    private static final double HEIGHT = -1;
+    Class CONTROLLER_CLASS = null;
+    String FXML_BASE_NAME = "";
+    double WIDTH = -1;
+    double HEIGHT = -1;
     
     private static void throwInvalidScene(String dataLabel) throws InvalidSceneException {
         throw new InvalidSceneException(dataLabel + " must be set");
@@ -37,7 +37,7 @@ public abstract class SceneFactory implements Initializable {
         }
     }
 
-    public static Scene asScene() throws IOException, InvalidSceneException {
+    public Scene asScene() throws IOException, InvalidSceneException {
         checkIfIsSet(CONTROLLER_CLASS, "controller class");
         checkIfIsSet(FXML_BASE_NAME, "file base name");
         checkIfIsSet(WIDTH, "width");

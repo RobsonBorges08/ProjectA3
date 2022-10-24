@@ -9,6 +9,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SettingsController extends SceneFactory {
+    
+    Class CONTROLLER_CLASS = null;
+    String FXML_BASE_NAME = "";
+    double WIDTH = -1;
+    double HEIGHT = -1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
