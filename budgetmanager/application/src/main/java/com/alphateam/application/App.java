@@ -1,5 +1,7 @@
 package com.alphateam.application;
 
+import com.budgetmanager.application.controllers.SettingsController;
+import com.budgetmanager.core.exceptions.InvalidSceneException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,8 +15,9 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+    public void start(Stage stage) throws IOException, InvalidSceneException {
+        SettingsController controller = new SettingsController();
+        scene = controller.asScene();
         stage.setScene(scene);
         stage.show();
     }
