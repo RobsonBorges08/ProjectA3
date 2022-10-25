@@ -10,10 +10,10 @@ import com.budgetmanager.core.exceptions.InvalidSceneException;
 
 public abstract class SceneFactory implements Initializable {
     
-    Class controllerClass = null;
-    String fxmlFileName = "";
-    double width = -1;
-    double height = -1;
+    private Class controllerClass = null;
+    private String fxmlFileName = "";
+    private double width = -1;
+    private double height = -1;
 
     public SceneFactory(Class controllerClass, double width, double height) {
         this.controllerClass = controllerClass;
