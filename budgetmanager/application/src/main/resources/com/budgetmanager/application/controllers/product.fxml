@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetmanager.application.controllers.SettingsController" />
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetmanager.application.controllers.SettingsController">
+   <children>
+      <Label layoutX="28.0" layoutY="22.0" text="PRODUTO:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="47.0" text="CÓDIGO:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="74.0" text="DESCRIÇÃO:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="28.0" layoutY="113.0" prefHeight="200.0" prefWidth="553.0" />
+   </children>
+</AnchorPane>
