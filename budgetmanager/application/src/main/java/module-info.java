@@ -4,7 +4,7 @@ module com.alphateam.application {
     requires java.base;
     requires com.alphateam.budgetmanager.core;
 
-    opens com.alphateam.application to javafx.fxml;
+    opens com.budgetmanager.application to javafx.fxml;
     exports com.budgetmanager.application.controllers;
-    exports com.alphateam.application;
+    exports com.budgetmanager.application;
 }
