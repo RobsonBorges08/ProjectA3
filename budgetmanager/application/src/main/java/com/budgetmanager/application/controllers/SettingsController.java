@@ -10,13 +10,27 @@ import java.util.ResourceBundle;
 
 public class SettingsController extends SceneFactory {
 
-    public SettingsController() {
-        super(SettingsController.class, 640, 480);
-    }
+    private double width = 640;
+    private double height = 480;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    @Override
+    public Class getControllerClass() {
+        return getClass();
+    }
+
+    @Override
+    public double getWidth() {
+        return width;
+    }
+
+    @Override
+    public double getHeight() {
+        return height;
     }
 
 }

@@ -9,18 +9,12 @@ import javafx.scene.Parent;
 import com.budgetmanager.core.exceptions.InvalidSceneException;
 
 public abstract class SceneFactory implements Initializable {
-    
-    private Class controllerClass = null;
-    private String fxmlFileName = "";
-    private double width = -1;
-    private double height = -1;
 
-    public SceneFactory(Class controllerClass, double width, double height) {
-        this.controllerClass = controllerClass;
-        this.fxmlFileName = getFxmlFileNameForClass(controllerClass);
-        this.width = width;
-        this.height = height;
-    }
+    public abstract Class getControllerClass();
+
+    public abstract double getWidth();
+
+    public abstract double getHeight();
     
     private static String getFxmlFileNameForClass(Class controllerClass) {
         String className = controllerClass.getSimpleName();
@@ -54,6 +48,11 @@ public abstract class SceneFactory implements Initializable {
     }
 
     public Scene asScene() throws IOException, InvalidSceneException {
+        Class controllerClass = getControllerClass();
+        String fxmlFileName = getFxmlFileNameForClass(controllerClass);
+        double width = getWidth();
+        double height = getHeight();
+        
         checkIfIsSet(controllerClass, "controller class");
         checkIfIsSet(fxmlFileName, "FXML file name");
         checkIfIsSet(width, "width");
