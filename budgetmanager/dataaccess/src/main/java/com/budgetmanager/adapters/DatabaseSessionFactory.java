@@ -1,4 +1,4 @@
-package com.budgetmanager.dataaccess.adapters;
+package com.budgetmanager.adapters;
 
 import java.net.URL;
 import org.hibernate.Session;

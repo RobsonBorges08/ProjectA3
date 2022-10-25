@@ -1,4 +1,4 @@
-package com.alphateam.application;
+package com.budgetmanager.application;
 
 import com.budgetmanager.application.controllers.SettingsController;
 import com.budgetmanager.core.exceptions.InvalidSceneException;
