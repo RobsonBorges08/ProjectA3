@@ -10,10 +10,26 @@ import com.budgetmanager.core.exceptions.InvalidSceneException;
 
 public abstract class SceneFactory implements Initializable {
     
-    Class CONTROLLER_CLASS = null;
-    String FXML_BASE_NAME = "";
-    double WIDTH = -1;
-    double HEIGHT = -1;
+    Class controllerClass = null;
+    String fxmlFileName = "";
+    double width = -1;
+    double height = -1;
+
+    public SceneFactory(Class controllerClass, double width, double height) {
+        this.controllerClass = controllerClass;
+        this.fxmlFileName = getFxmlFileNameForClass(controllerClass);
+        this.width = width;
+        this.height = height;
+    }
+    
+    private static String getFxmlFileNameForClass(Class controllerClass) {
+        String className = controllerClass.getSimpleName();
+        int indexOfControllerWord = className.indexOf("Controller");
+        String capitalizedFxmlBaseName = 
+                className.substring(0, indexOfControllerWord);
+        
+        return capitalizedFxmlBaseName.toLowerCase() + ".fxml";
+    }
     
     private static void throwInvalidScene(String dataLabel) throws InvalidSceneException {
         throw new InvalidSceneException(dataLabel + " must be set");
@@ -38,17 +54,15 @@ public abstract class SceneFactory implements Initializable {
     }
 
     public Scene asScene() throws IOException, InvalidSceneException {
-        checkIfIsSet(CONTROLLER_CLASS, "controller class");
-        checkIfIsSet(FXML_BASE_NAME, "file base name");
-        checkIfIsSet(WIDTH, "width");
-        checkIfIsSet(HEIGHT, "height");
+        checkIfIsSet(controllerClass, "controller class");
+        checkIfIsSet(fxmlFileName, "FXML file name");
+        checkIfIsSet(width, "width");
+        checkIfIsSet(height, "height");
         
-        String fxmlFileName = FXML_BASE_NAME + ".fxml";
-        
-        URL fxmlFilePath = CONTROLLER_CLASS.getResource(fxmlFileName);
+        URL fxmlFilePath = controllerClass.getResource(fxmlFileName);
         FXMLLoader loader = new FXMLLoader(fxmlFilePath);
         Parent loadedFXML = loader.load();
 
-        return new Scene(loadedFXML, WIDTH, HEIGHT);
+        return new Scene(loadedFXML, width, height);
     }
 }
