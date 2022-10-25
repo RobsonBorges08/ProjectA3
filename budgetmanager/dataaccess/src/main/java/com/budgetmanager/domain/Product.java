@@ -25,7 +25,4 @@ public class Product {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-
-    @OneToMany(mappedBy = "products")
-    private Set<BudgetRequest> budgetRequests;
 }
