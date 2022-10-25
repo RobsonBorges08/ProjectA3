@@ -5,30 +5,31 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetmanager.application.controllers.SettingsController">
    <children>
       <Label layoutX="46.0" layoutY="53.0" text="Nome Completo" />
-      <Label layoutX="229.0" layoutY="53.0" text="Cargo" />
-      <Label layoutX="406.0" layoutY="53.0" text="E-mail" />
-      <TextField layoutX="46.0" layoutY="79.0" prefHeight="25.0" prefWidth="149.0" />
-      <TextField layoutX="226.0" layoutY="79.0" />
-      <TextField layoutX="406.0" layoutY="79.0" />
+      <Label layoutX="245.0" layoutY="53.0" text="Cargo" />
+      <Label layoutX="384.0" layoutY="53.0" text="E-mail" />
+      <TextField layoutX="46.0" layoutY="79.0" prefHeight="25.0" prefWidth="173.0" />
+      <TextField layoutX="245.0" layoutY="79.0" prefHeight="25.0" prefWidth="119.0" />
+      <TextField layoutX="384.0" layoutY="79.0" prefHeight="25.0" prefWidth="173.0" />
       <Label layoutX="46.0" layoutY="131.0" prefHeight="17.0" prefWidth="105.0" text="Nome da Empresa" />
       <TextField layoutX="46.0" layoutY="156.0" />
-      <Label layoutX="226.0" layoutY="131.0" prefHeight="17.0" prefWidth="105.0" text="Telefone" />
-      <TextField layoutX="226.0" layoutY="156.0" />
-      <Label layoutX="406.0" layoutY="131.0" prefHeight="17.0" prefWidth="105.0" text="CEP" />
-      <TextField layoutX="406.0" layoutY="156.0" />
+      <Label layoutX="245.0" layoutY="131.0" prefHeight="17.0" prefWidth="105.0" text="Telefone" />
+      <TextField layoutX="245.0" layoutY="156.0" prefHeight="25.0" prefWidth="105.0" />
+      <Label layoutX="390.0" layoutY="131.0" prefHeight="17.0" prefWidth="23.0" text="CEP" />
+      <TextField layoutX="388.0" layoutY="156.0" prefHeight="25.0" prefWidth="105.0" />
       <Label layoutX="46.0" layoutY="200.0" prefHeight="17.0" prefWidth="105.0" text="Rua" />
-      <TextField layoutX="46.0" layoutY="225.0" />
-      <Label layoutX="226.0" layoutY="200.0" prefHeight="17.0" prefWidth="105.0" text="Logradouro" />
-      <TextField layoutX="226.0" layoutY="225.0" />
-      <Label layoutX="406.0" layoutY="200.0" prefHeight="17.0" prefWidth="105.0" text="Cidade" />
-      <TextField layoutX="406.0" layoutY="225.0" />
-      <Label layoutX="46.0" layoutY="268.0" prefHeight="17.0" prefWidth="105.0" text="País" />
+      <TextField layoutX="46.0" layoutY="225.0" prefHeight="25.0" prefWidth="173.0" />
+      <Label layoutX="245.0" layoutY="200.0" prefHeight="17.0" prefWidth="105.0" text="Logradouro" />
+      <TextField layoutX="247.0" layoutY="225.0" prefHeight="25.0" prefWidth="80.0" />
+      <Label layoutX="390.0" layoutY="200.0" prefHeight="17.0" prefWidth="105.0" text="Estado" />
+      <TextField layoutX="390.0" layoutY="225.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="46.0" layoutY="268.0" prefHeight="17.0" prefWidth="105.0" text="Cidade" />
       <TextField layoutX="46.0" layoutY="293.0" />
       <Button layoutX="511.0" layoutY="349.0" mnemonicParsing="false" text="Confirmar" />
       <Button layoutX="440.0" layoutY="349.0" mnemonicParsing="false" text="Cancelar" />
+      <Label layoutX="247.0" layoutY="268.0" prefHeight="17.0" prefWidth="105.0" text="País" />
+      <TextField layoutX="247.0" layoutY="293.0" />
    </children>
 </AnchorPane>
