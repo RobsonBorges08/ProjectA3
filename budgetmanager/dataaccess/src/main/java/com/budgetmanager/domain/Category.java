@@ -18,13 +18,13 @@ public class Category {
     @Id
     @GeneratedValue
     private int id;
-    
+
     @Column(unique = true)
     private String name;
 
     @OneToOne(mappedBy = "category")
     private Product product;
-    
+
     @ManyToMany(mappedBy = "categories")
     private Set<Supplier> suppliers;
 }
