@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Properties;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,7 +40,19 @@ public class SettingsService implements Closeable {
         return new File(fileURI);
     }
     
-    public Settings getSettings() throws IOException {
+    @Override
+    public void close() throws IOException {
+        inputStream.close();
+        outputStream.close();
+    }
+    
+    public Settings getSettings() throws IOException, InvalidSettingsException {
+        if (!isApplicationConfigured()) {
+            throw new InvalidSettingsException(
+                    "Application not configured"
+            );
+        }
+        
         Properties properties = getProperties();
         
         String fullName = properties.getProperty("fullName");
@@ -70,10 +83,20 @@ public class SettingsService implements Closeable {
         return settings;
     }
     
-    @Override
-    public void close() throws IOException {
-        inputStream.close();
-        outputStream.close();
+    public boolean isApplicationConfigured() throws IOException {
+        Properties properties = getProperties();
+        Set<String> propertiesSet = properties.stringPropertyNames();
+        String properyValue;
+        
+        for(String property : propertiesSet) {
+            properyValue = properties.getProperty(property, "");
+            
+            if (properyValue.isBlank()) {
+                return false;
+            }
+        }
+        
+        return true;
     }
 
     public void updateSettings(Settings newSettings) throws InvalidSettingsException, IOException {
