@@ -30,12 +30,6 @@ public class SettingsService implements Closeable {
         this.outputStream = new FileOutputStream(settingsFile);
     }
 
-    @Override
-    public void close() throws IOException {
-        inputStream.close();
-        outputStream.close();
-    }
-
     private File getSettingsFile() throws URISyntaxException {
         Class serviceClass = getClass();
         String fileName = "budgetmanager.properties";
@@ -43,6 +37,43 @@ public class SettingsService implements Closeable {
         URI fileURI = fileURL.toURI();
         
         return new File(fileURI);
+    }
+    
+    public Settings getSettings() throws IOException {
+        Properties properties = getProperties();
+        
+        String fullName = properties.getProperty("fullName");
+        String occupation = properties.getProperty("occupation");
+        String email = properties.getProperty("email");
+        String companyName = properties.getProperty("companyName");
+        String companyPhone = properties.getProperty("companyPhone");
+        String companyZipCode = properties.getProperty("companyZipCode");
+        String companyStreet = properties.getProperty("companyStreet");
+        String companyBuildingNumberAsString;
+        companyBuildingNumberAsString = properties.getProperty("companyBuildingNumber");
+        int companyBuildingNumber = Integer.parseInt(companyBuildingNumberAsString);
+        String companyCity = properties.getProperty("companyCity");
+        String companyCountry = properties.getProperty("companyCountry");
+        
+        Settings settings = new Settings();
+        settings.setFullName(fullName);
+        settings.setOccupation(occupation);
+        settings.setEmail(email);
+        settings.setCompanyName(companyName);
+        settings.setCompanyPhone(companyPhone);
+        settings.setCompanyZipCode(companyZipCode);
+        settings.setCompanyStreet(companyStreet);
+        settings.setCompanyBuildingNumber(companyBuildingNumber);
+        settings.setCompanyCity(companyCity);
+        settings.setCompanyCountry(companyCountry);
+        
+        return settings;
+    }
+    
+    @Override
+    public void close() throws IOException {
+        inputStream.close();
+        outputStream.close();
     }
 
     public void updateSettings(Settings newSettings) throws InvalidSettingsException, IOException {
