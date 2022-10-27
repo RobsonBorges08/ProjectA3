@@ -7,5 +7,11 @@ public class Settings {
     private String fullName;
     private String occupation;
     private String email;
-    private Company company;
+    private String companyName;
+    private String companyPhone;
+    private String companyZipCode;
+    private String companyStreet;
+    private int companyBuildingNumber;
+    private String companyCity;
+    private String companyCountry;
 }

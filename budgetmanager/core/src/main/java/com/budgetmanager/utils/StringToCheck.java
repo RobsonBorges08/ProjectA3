@@ -1,4 +1,4 @@
-package com.budgetmanager.utils.supplier;
+package com.budgetmanager.utils;
 
 import lombok.Data;
 
