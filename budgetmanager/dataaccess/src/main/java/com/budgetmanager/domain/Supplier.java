@@ -20,9 +20,13 @@ public class Supplier {
     @GeneratedValue
     @Column(name = "id")
     private int id;
+    
     private String companyName;
     private String tradingName;
+    
+    @Column(unique = true)
     private String employersIdentificationNumber; //CNPJ
+    
     private String email;
     private String zipCode;
     private String street;
