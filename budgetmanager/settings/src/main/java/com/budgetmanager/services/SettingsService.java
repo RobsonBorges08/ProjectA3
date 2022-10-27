@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 
 public class SettingsService implements Closeable {
 
+    private final String CONFIG_FILE_NAME = "budgetmanager.properties";
     private final InputStream inputStream;
     private final OutputStream outputStream;
 
@@ -33,8 +34,7 @@ public class SettingsService implements Closeable {
 
     private File getSettingsFile() throws URISyntaxException {
         Class serviceClass = getClass();
-        String fileName = "budgetmanager.properties";
-        URL fileURL = serviceClass.getResource(fileName);
+        URL fileURL = serviceClass.getResource(CONFIG_FILE_NAME);
         URI fileURI = fileURL.toURI();
         
         return new File(fileURI);
