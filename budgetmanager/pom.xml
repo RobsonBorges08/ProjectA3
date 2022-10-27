@@ -25,6 +25,7 @@
         <module>suppliercreation</module>
         <module>categorycreation</module>
         <module>settings</module>
+        <module>emailsending</module>
     </modules>
     
     <properties>
