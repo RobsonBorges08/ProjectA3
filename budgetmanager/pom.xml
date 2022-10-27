@@ -21,6 +21,7 @@
         <module>application</module>
         <module>core</module>
         <module>dataaccess</module>
+        <module>productcreation</module>
     </modules>
     
     <properties>

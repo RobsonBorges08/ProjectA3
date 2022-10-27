@@ -20,7 +20,7 @@ public class ProductRepository {
     }
 
     public Product getById(int productId) {
-        Class modelClass = getClass();
+        Class modelClass = Product.class;
         Product foundProduct = 
                 (Product) session.get(modelClass, productId);
         
@@ -28,7 +28,7 @@ public class ProductRepository {
     }
 
     public List<Product> list() {
-        Class modelClass = getClass();
+        Class modelClass = Product.class;
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         JpaCriteriaQuery criteriaQuery = builder.createQuery(modelClass);
         Query query = session.createQuery(criteriaQuery);

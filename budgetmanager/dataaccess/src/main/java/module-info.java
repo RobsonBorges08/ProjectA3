@@ -4,4 +4,8 @@ module com.budgetmanager.dataaccess {
     requires java.naming;
     requires java.persistence;
     requires lombok;
+    requires com.alphateam.budgetmanager.core;
+    
+    exports com.budgetmanager;
+    exports com.budgetmanager.domain;
 }
