@@ -6,19 +6,31 @@
         <artifactId>budgetmanager</artifactId>
         <version>0.1.0</version>
     </parent>
-    <groupId>com.alphateam.budgetmanager</groupId>
-    <artifactId>core</artifactId>
+    <groupId>com.budgetmanager</groupId>
+    <artifactId>settings</artifactId>
     <packaging>jar</packaging>
     <dependencies>
+        <dependency>
+            <groupId>com.budgetmanager</groupId>
+            <artifactId>dataaccess</artifactId>
+            <version>0.1.0</version>
+            <type>jar</type>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>com.alphateam.budgetmanager</groupId>
+            <artifactId>core</artifactId>
+            <version>0.1.0</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
+        <exec.mainClass>com.budgetmanager.settings.Settings</exec.mainClass>
     </properties>
 </project>

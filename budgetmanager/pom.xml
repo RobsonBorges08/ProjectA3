@@ -24,6 +24,7 @@
         <module>productcreation</module>
         <module>suppliercreation</module>
         <module>categorycreation</module>
+        <module>settings</module>
     </modules>
     
     <properties>

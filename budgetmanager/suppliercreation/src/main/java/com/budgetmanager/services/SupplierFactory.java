@@ -3,8 +3,8 @@ package com.budgetmanager.services;
 import com.budgetmanager.core.exceptions.InvalidSupplierException;
 import com.budgetmanager.domain.Supplier;
 import com.budgetmanager.domain.supplier.SupplierData;
-import com.budgetmanager.utils.supplier.StringToCheck;
-import com.budgetmanager.utils.supplier.StringToCheckPattern;
+import com.budgetmanager.utils.StringToCheck;
+import com.budgetmanager.utils.StringToCheckPattern;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
