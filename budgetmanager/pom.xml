@@ -23,6 +23,7 @@
         <module>dataaccess</module>
         <module>productcreation</module>
         <module>suppliercreation</module>
+        <module>categorycreation</module>
     </modules>
     
     <properties>
