@@ -8,23 +8,12 @@ import javax.mail.Authenticator;
 import javax.mail.Session;
 
 public class EmailSessionFactory {
+    
+    private final Properties properties;
 
-    private InputStream inputStream;
-    private Properties properties;
-    private final String CONFIG_FILE_NAME = "emailserver.properties";
-
-    public EmailSessionFactory() throws IOException {
-        properties = getProperties();
-    }
-
-    private Properties getProperties() throws IOException {
-        Class factoryClass = getClass();
-        URL configurationFileURL = factoryClass.getResource(CONFIG_FILE_NAME);
-        inputStream = configurationFileURL.openStream();
-        Properties properties = new Properties();
+    public EmailSessionFactory(InputStream inputStream) throws IOException {
+        properties = new Properties();
         properties.load(inputStream);
-
-        return properties;
     }
 
     public Session makeSession() {
