@@ -2,6 +2,7 @@ package com.budgetmanager.repositories;
 
 import com.budgetmanager.domain.Category;
 import java.util.List;
+import org.hibernate.NaturalIdLoadAccess;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
@@ -20,7 +21,7 @@ public class CategoryRepository {
     }
 
     public Category getById(int categoryId) {
-        Class modelClass = getClass();
+        Class modelClass = Category.class;
         Category foundCategory = 
                 (Category) session.get(modelClass, categoryId);
         
@@ -28,12 +29,22 @@ public class CategoryRepository {
     }
 
     public List<Category> list() {
-        Class modelClass = getClass();
+        Class modelClass = Category.class;
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         JpaCriteriaQuery criteriaQuery = builder.createQuery(modelClass);
         Query query = session.createQuery(criteriaQuery);
         
         return query.list();
+    }
+    
+    public Category getByName(String categoryName) {
+        Class modelClass = Category.class;
+        NaturalIdLoadAccess loadAccess;
+        loadAccess = session.byNaturalId(modelClass);
+        loadAccess = loadAccess.using("name", categoryName);
+        Category foundCategory = (Category) loadAccess.load();
+        
+        return foundCategory;
     }
 
 }

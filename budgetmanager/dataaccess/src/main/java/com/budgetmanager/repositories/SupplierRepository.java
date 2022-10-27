@@ -20,7 +20,7 @@ public class SupplierRepository {
     }
 
     public Supplier getById(int supplierId) {
-        Class modelClass = getClass();
+        Class modelClass = Supplier.class;
         Supplier foundSupplier = 
                 (Supplier) session.get(modelClass, supplierId);
         
@@ -28,7 +28,7 @@ public class SupplierRepository {
     }
 
     public List<Supplier> list() {
-        Class modelClass = getClass();
+        Class modelClass = Supplier.class;
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         JpaCriteriaQuery criteriaQuery = builder.createQuery(modelClass);
         Query query = session.createQuery(criteriaQuery);

@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 import lombok.Data;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "categories")
@@ -17,9 +18,11 @@ public class Category {
 
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private int id;
 
-    @Column(unique = true)
+    @NaturalId
+    @Column(name = "name", unique = true)
     private String name;
 
     @OneToOne(mappedBy = "category")
