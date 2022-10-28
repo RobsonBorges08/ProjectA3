@@ -4,6 +4,7 @@ import com.budgetmanager.adapter.email.EmailSessionFactory;
 import com.budgetmanager.domain.BudgetRequest;
 import com.budgetmanager.domain.ProductOnBudget;
 import com.budgetmanager.domain.Settings;
+import com.budgetmanager.domain.Supplier;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
@@ -11,7 +12,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Collection;
+import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class EmailSender implements Closeable {
 
@@ -37,11 +44,21 @@ public class EmailSender implements Closeable {
         inputStream.close();
     }
 
-    public void sendEmail(BudgetRequest newBudgetRequest) throws IOException {
+    public void sendEmail(BudgetRequest newBudgetRequest) throws IOException, AddressException, MessagingException {
         String greetings = generateGreetings();
+        
         Collection<ProductOnBudget> products = newBudgetRequest.getProducts();
         String listOfItems = generateListOfItems(products);
+        
         String signature = generateSignature();
+        
+        String fullMessage = greetings + listOfItems + signature;
+        
+        Supplier supplier = newBudgetRequest.getSupplier();
+        String recipientEmail = supplier.getEmail();
+        InternetAddress recipientInternetAddress;
+        recipientInternetAddress = new InternetAddress(recipientEmail);
+        sendMessageTo(fullMessage, recipientInternetAddress);
     }
 
     private String generateGreetings() throws IOException {
@@ -72,7 +89,7 @@ public class EmailSender implements Closeable {
             stringBuilder.append(listItem);
         }
 
-        stringBuilder.append("</ul>");
+        stringBuilder.append("</ul><br>");
 
         return stringBuilder.toString();
     }
@@ -88,18 +105,38 @@ public class EmailSender implements Closeable {
         String companyCountry = settings.getCompanyCountry();
 
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<p>Atenciosamente,</p><br>");
         stringBuilder.append("<p>");
         stringBuilder.append(fullName);
         stringBuilder.append(" | ");
         stringBuilder.append(occupation);
         stringBuilder.append(" | ");
         stringBuilder.append(companyName);
-        stringBuilder.append("</p>");
-        stringBuilder.append("<p>");
+        stringBuilder.append("</p><p>");
         stringBuilder.append(companyStreet);
         stringBuilder.append(", ");
         stringBuilder.append(companyBuildingNumber);
         stringBuilder.append(" | ");
+        stringBuilder.append(companyCity);
+        stringBuilder.append(", ");
+        stringBuilder.append(companyCountry);
+        stringBuilder.append(" | Telefone: ");
+        stringBuilder.append(companyPhone);
+        stringBuilder.append(" | </p>");
+        
+        return stringBuilder.toString();
+    }
+
+    private void sendMessageTo(String fullMessage, InternetAddress recipientAddress) throws MessagingException {
+        String senderEmail = settings.getEmail();
+        
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(senderEmail);
+        message.addRecipient(Message.RecipientType.TO, recipientAddress);
+        message.setSubject("Pedido de orçamento");
+        message.setText(fullMessage);
+        
+        Transport.send(message);
     }
 
 }

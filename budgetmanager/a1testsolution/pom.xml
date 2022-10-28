@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.alphateam</groupId>
+        <artifactId>budgetmanager</artifactId>
+        <version>0.1.0</version>
+    </parent>
+    <groupId>com.calegario</groupId>
+    <artifactId>a1testsolution</artifactId>
+    <packaging>jar</packaging>
+    <properties>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+        <exec.mainClass>com.calegario.a1testsolution.Aplicacao</exec.mainClass>
+    </properties>
+</project>
