@@ -43,6 +43,12 @@ public class EmailSender implements Closeable {
     public void close() throws IOException {
         inputStream.close();
     }
+    
+    public void sendEmails(Collection<BudgetRequest> newBudgetRequests) throws IOException, MessagingException {
+        for (BudgetRequest request : newBudgetRequests) {
+            sendEmail(request);
+        }
+    }
 
     public void sendEmail(BudgetRequest newBudgetRequest) throws IOException, AddressException, MessagingException {
         String greetings = generateGreetings();
