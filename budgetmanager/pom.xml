@@ -26,6 +26,7 @@
         <module>categorycreation</module>
         <module>settings</module>
         <module>emailsending</module>
+        <module>budgetrequestcreation</module>
     </modules>
     
     <properties>
