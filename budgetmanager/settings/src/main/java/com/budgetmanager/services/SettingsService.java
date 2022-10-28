@@ -74,7 +74,6 @@ public class SettingsService implements Closeable {
         settings.setEmail(email);
         settings.setCompanyName(companyName);
         settings.setCompanyPhone(companyPhone);
-        settings.setCompanyZipCode(companyZipCode);
         settings.setCompanyStreet(companyStreet);
         settings.setCompanyBuildingNumber(companyBuildingNumber);
         settings.setCompanyCity(companyCity);
@@ -105,7 +104,6 @@ public class SettingsService implements Closeable {
         String email = newSettings.getEmail();
         String companyName = newSettings.getCompanyName();
         String companyPhone = newSettings.getCompanyPhone();
-        String companyZipCode = newSettings.getCompanyZipCode();
         String companyStreet = newSettings.getCompanyStreet();
         int companyBuildingNumber = newSettings.getCompanyBuildingNumber();
         String companyCity = newSettings.getCompanyCity();
@@ -116,7 +114,6 @@ public class SettingsService implements Closeable {
         checkEmail(email);
         checkCompanyName(companyName);
         checkPhone(companyPhone);
-        checkZipCode(companyZipCode);
         checkStreet(companyStreet);
         checkIfIsPositive(companyBuildingNumber);
         checkCity(companyCity);
@@ -166,16 +163,6 @@ public class SettingsService implements Closeable {
         toCheckPattern.setValue(email);
         toCheckPattern.setPattern(
                 "^.+[@].+[.].+$"
-        );
-        checkIfStringMatchPattern(toCheckPattern);
-    }
-
-    private void checkZipCode(String zipCode) throws InvalidSettingsException {
-        StringToCheckPattern toCheckPattern = new StringToCheckPattern();
-        toCheckPattern.setLabel("ZIP code");
-        toCheckPattern.setValue(zipCode);
-        toCheckPattern.setPattern(
-                "^[0-9]{5}[-][0-9]{3}$"
         );
         checkIfStringMatchPattern(toCheckPattern);
     }
@@ -241,7 +228,6 @@ public class SettingsService implements Closeable {
         String email = newSettings.getEmail();
         String companyName = newSettings.getCompanyName();
         String companyPhone = newSettings.getCompanyPhone();
-        String companyZipCode = newSettings.getCompanyZipCode();
         String companyStreet = newSettings.getCompanyStreet();
         int companyBuildingNumber = newSettings.getCompanyBuildingNumber();
         String companyBuildingNumberAsString;
@@ -255,7 +241,6 @@ public class SettingsService implements Closeable {
         properties.setProperty("email", email);
         properties.setProperty("companyName", companyName);
         properties.setProperty("companyPhone", companyPhone);
-        properties.setProperty("companyZipCode", companyZipCode);
         properties.setProperty("companyStreet", companyStreet);
         properties.setProperty("companyBuildingNumber", companyBuildingNumberAsString);
         properties.setProperty("companyCity", companyCity);

@@ -9,7 +9,6 @@ public class Settings {
     private String email;
     private String companyName;
     private String companyPhone;
-    private String companyZipCode;
     private String companyStreet;
     private int companyBuildingNumber;
     private String companyCity;
