@@ -23,5 +23,17 @@ public class ProductListView {
         
         return query.list();
     }
+    
+    public List<Product> filterByDescription(String keywords) {
+        String readingQueryString = ("SELECT id, description, category "
+                + "FROM read_only_products "
+                + "WHERE description LIKE '%" + keywords + "%'"
+                + "ORDER BY description");
+        
+        NativeQuery<Product> query;
+        query = session.createNativeQuery(readingQueryString, Product.class);
+        
+        return query.list();
+    }
 
 }
