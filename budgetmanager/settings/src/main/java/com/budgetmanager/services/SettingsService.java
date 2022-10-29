@@ -16,7 +16,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Properties;
-import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,13 +47,7 @@ public class SettingsService implements Closeable {
         outputStream.close();
     }
     
-    public Settings getSettings() throws IOException, InvalidSettingsException {
-        if (!isApplicationConfigured()) {
-            throw new InvalidSettingsException(
-                    "Application not configured"
-            );
-        }
-        
+    public Settings getSettings() throws IOException, InvalidSettingsException, NumberFormatException {
         Properties properties = getProperties();
         
         String fullName = properties.getProperty("fullName");
@@ -60,7 +55,6 @@ public class SettingsService implements Closeable {
         String email = properties.getProperty("email");
         String companyName = properties.getProperty("companyName");
         String companyPhone = properties.getProperty("companyPhone");
-        String companyZipCode = properties.getProperty("companyZipCode");
         String companyStreet = properties.getProperty("companyStreet");
         String companyBuildingNumberAsString;
         companyBuildingNumberAsString = properties.getProperty("companyBuildingNumber");
@@ -79,20 +73,18 @@ public class SettingsService implements Closeable {
         settings.setCompanyCity(companyCity);
         settings.setCompanyCountry(companyCountry);
         
-        return settings;
+        if (settings.isConfigured()) {
+            return settings;
+        }
+        
+        throw new InvalidSettingsException("Application not configured");
     }
     
-    public boolean isApplicationConfigured() throws IOException {
-        Properties properties = getProperties();
-        Set<String> propertiesSet = properties.stringPropertyNames();
-        String properyValue;
-        
-        for(String property : propertiesSet) {
-            properyValue = properties.getProperty(property, "");
-            
-            if (properyValue.isBlank()) {
-                return false;
-            }
+    public boolean isApplicationConfigured() throws IOException, NumberFormatException {
+        try {
+            getSettings();
+        } catch (InvalidSettingsException ex) {
+            return false;
         }
         
         return true;
