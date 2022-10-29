@@ -8,7 +8,7 @@ import com.budgetmanager.application.interfaces.SceneFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProductController extends SceneFactory {
+public class ProductCreationController extends SceneFactory {
 
     private double width = 640;
     private double height = 480;
