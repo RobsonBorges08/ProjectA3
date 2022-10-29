@@ -21,7 +21,10 @@ public class Supplier {
     @Column(name = "id")
     private int id;
     
+    @Column(name = "companyName")
     private String companyName;
+    
+    @Column(name = "tradingName")
     private String tradingName;
     
     @Column(unique = true)
@@ -31,7 +34,11 @@ public class Supplier {
     private String zipCode;
     private String street;
     private int buildingNumber;
+    
+    @Column(name = "city")
     private String city;
+    
+    @Column(name = "country")
     private String country;
 
     @ManyToMany

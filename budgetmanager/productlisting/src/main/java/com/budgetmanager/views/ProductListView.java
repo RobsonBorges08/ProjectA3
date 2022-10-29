@@ -8,7 +8,7 @@ import org.hibernate.query.NativeQuery;
 
 public class ProductListView {
 
-    private Session session;
+    private final Session session;
 
     public ProductListView(Session session) {
         this.session = DatabaseSessionFactory.makeSession();
