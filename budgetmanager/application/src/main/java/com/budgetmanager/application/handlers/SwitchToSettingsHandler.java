@@ -5,6 +5,7 @@
 package com.budgetmanager.application.handlers;
 
 import com.budgetmanager.application.App;
+import com.budgetmanager.application.services.DialogService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -33,7 +34,7 @@ public class SwitchToSettingsHandler implements EventHandler<ActionEvent> {
             Parent loadedFXML = loader.load();
             App.setRoot(loadedFXML);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            DialogService.showErrorMessage(ex.getMessage());
         }
     }
     

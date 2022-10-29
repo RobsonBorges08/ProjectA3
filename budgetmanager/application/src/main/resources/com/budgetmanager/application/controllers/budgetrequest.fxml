@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetmanager.application.controllers.BudgetRequestController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetmanager.application.controllers.BudgetRequestController">
    <children>
       <Label layoutX="30.0" layoutY="27.0" text="ENVIO DE PEDIDO DE ORÇAMENTO">
          <font>
@@ -23,14 +23,14 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="227.0" text="Fornecedor">
+      <Label layoutX="32.0" layoutY="254.0" text="Fornecedor">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="32.0" layoutY="102.0" prefHeight="98.0" prefWidth="527.0">
+      <ScrollPane layoutX="32.0" layoutY="102.0" prefHeight="115.0" prefWidth="566.0">
          <content>
-            <TableView prefHeight="99.0" prefWidth="514.0">
+            <TableView prefHeight="123.0" prefWidth="550.0">
               <columns>
                 <TableColumn prefWidth="109.0" text="CÓDIGO" />
                 <TableColumn prefWidth="138.0" text="PRODUTO" />
@@ -39,9 +39,9 @@
             </TableView>
          </content>
       </ScrollPane>
-      <ScrollPane layoutX="32.0" layoutY="252.0" prefHeight="98.0" prefWidth="527.0">
+      <ScrollPane layoutX="32.0" layoutY="283.0" prefHeight="129.0" prefWidth="566.0">
          <content>
-            <TableView prefHeight="94.0" prefWidth="527.0">
+            <TableView prefHeight="132.0" prefWidth="552.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="CÓDIGO" />
                 <TableColumn prefWidth="199.0" text="NOME DO FORNECEDOR" />
@@ -56,23 +56,23 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="363.0" layoutY="75.0" mnemonicParsing="false" text="Adicionar" />
+      <Button layoutX="365.0" layoutY="75.0" mnemonicParsing="false" text="Adicionar" />
       <Button layoutX="446.0" layoutY="75.0" mnemonicParsing="false" text="Cadastrar Produto" />
-      <TextField layoutX="171.0" layoutY="225.0" />
-      <Button layoutX="320.0" layoutY="225.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0">
+      <TextField layoutX="171.0" layoutY="255.0" />
+      <Button layoutX="320.0" layoutY="255.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0">
          <graphic>
-            <ImageView fx:id="magnifyingGlass2ImageView"  fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="magnifyingGlass2ImageView" fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="353.0" layoutY="225.0" mnemonicParsing="false" text="Adicionar" />
-      <Button layoutX="428.0" layoutY="225.0" mnemonicParsing="false" text="Cadastrar Fornecedor" />
-      <Button layoutX="454.0" layoutY="357.0" mnemonicParsing="false" text="Enviar">
+      <Button layoutX="355.0" layoutY="255.0" mnemonicParsing="false" text="Adicionar" />
+      <Button layoutX="432.0" layoutY="254.0" mnemonicParsing="false" text="Cadastrar Fornecedor" />
+      <Button layoutX="454.0" layoutY="434.0" mnemonicParsing="false" text="Enviar">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="switchToSettings" layoutX="519.0" layoutY="356.0" mnemonicParsing="false">
+      <Button fx:id="switchToSettings" layoutX="525.0" layoutY="434.0" mnemonicParsing="false">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
