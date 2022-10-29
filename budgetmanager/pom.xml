@@ -28,6 +28,7 @@
         <module>emailsending</module>
         <module>budgetrequestcreation</module>
         <module>productlisting</module>
+        <module>supplierlisting</module>
     </modules>
     
     <properties>
