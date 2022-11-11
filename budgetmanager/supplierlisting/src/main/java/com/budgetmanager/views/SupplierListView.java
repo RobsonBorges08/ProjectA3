@@ -1,5 +1,6 @@
 package com.budgetmanager.views;
 
+import com.budgetmanager.adapters.DatabaseSessionFactory;
 import com.budgetmanager.domain.Supplier;
 import java.util.List;
 import org.hibernate.Session;
@@ -9,8 +10,8 @@ public class SupplierListView {
     
     private final Session session;
 
-    public SupplierListView(Session session) {
-        this.session = session;
+    public SupplierListView() {
+        this.session = DatabaseSessionFactory.makeSession();
     }
 
     public List<Supplier> list() {
