@@ -2,7 +2,6 @@ package com.budgetmanager.adapter.email;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Session;
