@@ -9,16 +9,16 @@ import java.util.Set;
 
 public class BudgetRequestSetFactory {
 
-    public Set<BudgetRequest> makeSet(BudgetRequestSetData data) {
+    public Set<BudgetRequest> makeSet(BudgetRequestSetData budgetRequestsData) {
         Set<BudgetRequest> newBudgetRequestSet = new HashSet<>();
-        Set<Supplier> suppliers = data.getSuppliers();
-        String observations = data.getObservations();
+        Set<Supplier> suppliers = budgetRequestsData.getSuppliers();
+        String observations = budgetRequestsData.getObservations();
         BudgetRequest request;
         Set<ProductOnBudget> products;
 
         for (Supplier supplier : suppliers) {
             request = new BudgetRequest();
-            products = data.getProducts();
+            products = budgetRequestsData.getProducts();
 
             request.setProducts(products);
             request.setSupplier(supplier);

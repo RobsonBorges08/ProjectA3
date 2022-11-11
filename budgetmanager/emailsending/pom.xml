@@ -21,6 +21,12 @@
             <version>0.1.0</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>com.budgetmanager</groupId>
+            <artifactId>settings</artifactId>
+            <version>0.1.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
