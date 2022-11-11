@@ -10,19 +10,19 @@ import java.util.regex.Pattern;
 
 public class SupplierFactory {
 
-    public Supplier makeSupplier(SupplierData data) throws InvalidSupplierException {
+    public Supplier makeSupplier(SupplierData supplierData) throws InvalidSupplierException {
         Supplier newSupplier = new Supplier();
         
-        String companyName = data.getCompanyName();
-        String tradingName = data.getTradingName();
+        String companyName = supplierData.getCompanyName();
+        String tradingName = supplierData.getTradingName();
         String employersIdentificationNumber;
-        employersIdentificationNumber = data.getEmployersIdentificationNumber();
-        String email = data.getEmail();
-        String zipCode = data.getZipCode();
-        String street = data.getStreet();
-        int buildingNumber = data.getBuildingNumber();
-        String city = data.getCity();
-        String country = data.getCountry();
+        employersIdentificationNumber = supplierData.getEmployersIdentificationNumber();
+        String email = supplierData.getEmail();
+        String zipCode = supplierData.getZipCode();
+        String street = supplierData.getStreet();
+        int buildingNumber = supplierData.getBuildingNumber();
+        String city = supplierData.getCity();
+        String country = supplierData.getCountry();
         
         checkCompanyName(companyName);
         checkEin(employersIdentificationNumber);
