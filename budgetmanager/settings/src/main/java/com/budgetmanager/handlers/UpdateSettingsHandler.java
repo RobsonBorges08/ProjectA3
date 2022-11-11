@@ -22,6 +22,10 @@ public class UpdateSettingsHandler implements EventHandler<ActionEvent> {
 
     private Settings newSettings;
 
+    public UpdateSettingsHandler(Settings newSettings) {
+        this.newSettings = newSettings;
+    }
+
     @Override
     public void handle(ActionEvent t) {
         try {
