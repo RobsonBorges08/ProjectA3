@@ -9,12 +9,14 @@ import com.budgetmanager.core.exceptions.ProductNotFoundException;
 import com.budgetmanager.core.exceptions.SupplierNotFoundException;
 import com.budgetmanager.domain.Category;
 import com.budgetmanager.domain.Product;
+import com.budgetmanager.domain.ReadOnlyProduct;
 import com.budgetmanager.domain.Supplier;
 import java.util.List;
 
 public class UnitOfWork {
 
     private final ProductRepository products;
+    private final ReadOnlyProductRepository readOnlyProducts;
     private final SupplierRepository suppliers;
     private final CategoryRepository categories;
     private final Session session;
@@ -22,7 +24,9 @@ public class UnitOfWork {
 
     public UnitOfWork() {
         this.session = DatabaseSessionFactory.makeSession();
+        
         this.products = new ProductRepository(session);
+        this.readOnlyProducts = new ReadOnlyProductRepository(session);
         this.suppliers = new SupplierRepository(session);
         this.categories = new CategoryRepository(session);
     }
@@ -30,6 +34,11 @@ public class UnitOfWork {
     public void createProduct(Product newProduct) {
         transaction = session.beginTransaction();
         products.create(newProduct);
+    }
+    
+    public void createReadOnlyProduct(ReadOnlyProduct newProduct) {
+        transaction = session.beginTransaction();
+        readOnlyProducts.create(newProduct);
     }
 
     public void createSupplier(Supplier newSupplier) {
