@@ -29,6 +29,7 @@
         <module>budgetrequestcreation</module>
         <module>productlisting</module>
         <module>supplierlisting</module>
+        <module>categorylisting</module>
     </modules>
     
     <properties>
