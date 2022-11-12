@@ -66,12 +66,9 @@ public class SendRequestHandler implements EventHandler<ActionEvent> {
             DialogService.showSuccessMessage("Pedidos de orçamento enviados!");
 
         } catch (IOException | InvalidSettingsException | URISyntaxException |
-                NotEnoughDataException | MessagingException exception) {
+                NotEnoughDataException | MessagingException |
+                NumberFormatException exception) {
             DialogService.showErrorMessage(exception);
-            Logger.getLogger(SendRequestHandler.class.getName())
-                    .log(Level.SEVERE, null, exception);
-        } catch (NumberFormatException exception) {
-            DialogService.showErrorMessage("Pelo menos um produto e um fornecedor deve ser informado");
             Logger.getLogger(SendRequestHandler.class.getName())
                     .log(Level.SEVERE, null, exception);
         }
