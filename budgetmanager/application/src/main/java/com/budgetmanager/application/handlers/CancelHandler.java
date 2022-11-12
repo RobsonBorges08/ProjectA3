@@ -7,7 +7,6 @@ package com.budgetmanager.application.handlers;
 import com.budgetmanager.application.App;
 import com.budgetmanager.application.services.DialogService;
 import com.budgetmanager.services.SettingsService;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -17,9 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 
 /**
  *
@@ -30,7 +26,8 @@ public class CancelHandler implements EventHandler<ActionEvent> {
     private final URL budgetRequestScreenFxmlURL;
 
     public CancelHandler(Class controllerClass) throws IOException {
-        this.budgetRequestScreenFxmlURL = controllerClass.getResource("budgetrequest.fxml");
+        this.budgetRequestScreenFxmlURL = controllerClass.getResource(
+                "budgetrequest.fxml");
     }
 
     @Override
@@ -47,9 +44,13 @@ public class CancelHandler implements EventHandler<ActionEvent> {
             }
 
         } catch (IOException | URISyntaxException ex) {
-            DialogService.showErrorMessage(ex.getMessage());
+            DialogService.showErrorMessage(ex);
+            Logger.getLogger(CancelHandler.class.getName()).log(Level.SEVERE,
+                    null, ex);
         } catch (NumberFormatException ex) {
             DialogService.showErrorMessage("Aplicação não configurada");
+            Logger.getLogger(CancelHandler.class.getName()).log(Level.SEVERE,
+                    null, ex);
         }
     }
 

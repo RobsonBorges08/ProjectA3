@@ -18,14 +18,18 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import com.budgetmanager.services.SettingsService;
 import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConfirmHandler implements EventHandler<ActionEvent> {
 
     private final URL budgetRequestScreenFxmlURL;
     private final SettingsForm settingsForm;
 
-    public ConfirmHandler(Class controllerClass, SettingsForm settingsForm) throws IOException {
-        this.budgetRequestScreenFxmlURL = controllerClass.getResource("budgetrequest.fxml");
+    public ConfirmHandler(Class controllerClass, SettingsForm settingsForm)
+            throws IOException {
+        this.budgetRequestScreenFxmlURL = controllerClass.getResource(
+                "budgetrequest.fxml");
         this.settingsForm = settingsForm;
     }
 
@@ -38,9 +42,11 @@ public class ConfirmHandler implements EventHandler<ActionEvent> {
             TextField companyNameField = settingsForm.getCompanyNameField();
             TextField companyPhoneField = settingsForm.getCompanyPhoneField();
             TextField companyStreetField = settingsForm.getCompanyStreetField();
-            TextField companyBuildingNumberField = settingsForm.getCompanyBuildingNumberField();
+            TextField companyBuildingNumberField = settingsForm
+                    .getCompanyBuildingNumberField();
             TextField companyCityField = settingsForm.getCompanyCityField();
-            TextField companyCountryField = settingsForm.getCompanyCountryField();
+            TextField companyCountryField = settingsForm
+                    .getCompanyCountryField();
 
             String fullName = fullNameField.getText();
             String occupation = occupationField.getText();
@@ -48,8 +54,10 @@ public class ConfirmHandler implements EventHandler<ActionEvent> {
             String companyName = companyNameField.getText();
             String companyPhone = companyPhoneField.getText();
             String companyStreet = companyStreetField.getText();
-            String companyBuildingNumberAsString = companyBuildingNumberField.getText();
-            int companyBuildingNumber = Integer.parseInt(companyBuildingNumberAsString);
+            String companyBuildingNumberAsString = companyBuildingNumberField
+                    .getText();
+            int companyBuildingNumber = Integer.parseInt(
+                    companyBuildingNumberAsString);
             String companyCity = companyCityField.getText();
             String companyCountry = companyCountryField.getText();
 
@@ -72,9 +80,13 @@ public class ConfirmHandler implements EventHandler<ActionEvent> {
             App.setRoot(loadedFXML);
 
         } catch (IOException | URISyntaxException | InvalidSettingsException ex) {
-            DialogService.showErrorMessage(ex.getMessage());
+            DialogService.showErrorMessage(ex);
+            Logger.getLogger(ConfirmHandler.class.getName()).log(Level.SEVERE,
+                    null, ex);
         } catch (NumberFormatException ex) {
             DialogService.showErrorMessage("Número do prédio invalido");
+            Logger.getLogger(ConfirmHandler.class.getName()).log(Level.SEVERE,
+                    null, ex);
         }
     }
 
