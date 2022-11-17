@@ -56,7 +56,7 @@
       </ScrollPane>
       <Button layoutX="224.0" layoutY="75.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="208.0" text="Adicionar produto ao pedido" />
       <Button fx:id="callProductCreation" layoutX="438.0" layoutY="75.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Cadastrar produto" />
-      <Button layoutX="438.0" layoutY="227.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Cadastrar fornecedor" />
+      <Button fx:id="callSupplierCreation" layoutX="438.0" layoutY="227.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Cadastrar fornecedor" />
       <Button fx:id="sendRequest" layoutX="454.0" layoutY="442.0" mnemonicParsing="false" text="Enviar">
          <font>
             <Font name="System Bold" size="14.0" />

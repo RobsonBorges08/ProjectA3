@@ -4,64 +4,65 @@ import com.budgetmanager.core.exceptions.InvalidSettingsException;
 import com.budgetmanager.domain.Settings;
 import com.budgetmanager.utils.StringToCheck;
 import com.budgetmanager.utils.StringToCheckPattern;
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URI;
+import java.io.*;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Properties;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.logging.Level.INFO;
+
 public class SettingsService implements Closeable {
 
     private final String CONFIG_FILE_NAME = "budgetmanager.properties";
-    private final InputStream inputStream;
-    private final OutputStream outputStream;
+    private final Logger logger;
 
-    public SettingsService() throws URISyntaxException, FileNotFoundException {
-        File settingsFile = getSettingsFile();
-        this.inputStream = new FileInputStream(settingsFile);
-        this.outputStream = new FileOutputStream(settingsFile);
+    public SettingsService() throws URISyntaxException, FileNotFoundException,
+            IOException {
+        this.logger = Logger.getLogger(SettingsService.class.getName());
     }
 
-    private File getSettingsFile() throws URISyntaxException {
-        Class serviceClass = getClass();
-        URL fileURL = serviceClass.getResource(CONFIG_FILE_NAME);
-        URI fileURI = fileURL.toURI();
-        
-        return new File(fileURI);
-    }
-    
     @Override
     public void close() throws IOException {
-        inputStream.close();
-        outputStream.close();
     }
-    
-    public Settings getSettings() throws IOException, InvalidSettingsException, NumberFormatException {
+
+    public Settings getSettings() throws IOException, InvalidSettingsException,
+            NumberFormatException {
         Properties properties = getProperties();
-        
+
         String fullName = properties.getProperty("fullName");
+        logPropertyWasLoaded("fullName", fullName);
+
         String occupation = properties.getProperty("occupation");
+        logPropertyWasLoaded("occupation", occupation);
+
         String email = properties.getProperty("email");
+        logPropertyWasLoaded("email", email);
+
         String companyName = properties.getProperty("companyName");
+        logPropertyWasLoaded("companyName", companyName);
+
         String companyPhone = properties.getProperty("companyPhone");
+        logPropertyWasLoaded("companyPhone", companyPhone);
+
         String companyStreet = properties.getProperty("companyStreet");
+        logPropertyWasLoaded("companyStreet", companyStreet);
+
         String companyBuildingNumberAsString;
-        companyBuildingNumberAsString = properties.getProperty("companyBuildingNumber");
-        int companyBuildingNumber = Integer.parseInt(companyBuildingNumberAsString);
+        companyBuildingNumberAsString = properties.getProperty(
+                "companyBuildingNumber");
+        logPropertyWasLoaded("companyBuildingNumber",
+                companyBuildingNumberAsString);
+
+        int companyBuildingNumber = Integer.parseInt(
+                companyBuildingNumberAsString);
         String companyCity = properties.getProperty("companyCity");
+        logPropertyWasLoaded("companyCity", companyCity);
+
         String companyCountry = properties.getProperty("companyCountry");
-        
+        logPropertyWasLoaded("companyCountry", companyCountry);
+
         Settings settings = new Settings();
         settings.setFullName(fullName);
         settings.setOccupation(occupation);
@@ -72,25 +73,35 @@ public class SettingsService implements Closeable {
         settings.setCompanyBuildingNumber(companyBuildingNumber);
         settings.setCompanyCity(companyCity);
         settings.setCompanyCountry(companyCountry);
-        
+
         if (settings.isConfigured()) {
             return settings;
         }
-        
+
         throw new InvalidSettingsException("Application not configured");
     }
-    
-    public boolean isApplicationConfigured() throws IOException, NumberFormatException {
+
+    private void logPropertyWasLoaded(String propertyName, String value) {
+        String loggingMessage;
+        loggingMessage = String.format(
+                "Value %s was loaded from the property %s",
+                value, propertyName);
+        logger.log(INFO, loggingMessage);
+    }
+
+    public boolean isApplicationConfigured() throws IOException,
+            NumberFormatException {
         try {
             getSettings();
         } catch (InvalidSettingsException ex) {
             return false;
         }
-        
+
         return true;
     }
 
-    public void updateSettings(Settings newSettings) throws InvalidSettingsException, IOException {
+    public void updateSettings(Settings newSettings) throws
+            InvalidSettingsException, IOException, URISyntaxException {
         String fullName = newSettings.getFullName();
         String occupation = newSettings.getOccupation();
         String email = newSettings.getEmail();
@@ -124,14 +135,16 @@ public class SettingsService implements Closeable {
         checkIfStringMatchPattern(toCheckPattern);
     }
 
-    private void checkOccupation(String occupation) throws InvalidSettingsException {
+    private void checkOccupation(String occupation) throws
+            InvalidSettingsException {
         StringToCheck toCheck = new StringToCheck();
         toCheck.setLabel("occupation");
         toCheck.setValue(occupation);
         checkIfStringIsBlank(toCheck);
     }
 
-    private void checkCompanyName(String companyName) throws InvalidSettingsException {
+    private void checkCompanyName(String companyName) throws
+            InvalidSettingsException {
         StringToCheck toCheck = new StringToCheck();
         toCheck.setLabel("company name");
         toCheck.setValue(companyName);
@@ -180,7 +193,8 @@ public class SettingsService implements Closeable {
         checkIfStringIsBlank(toCheck);
     }
 
-    private void checkIfStringIsBlank(StringToCheck toCheck) throws InvalidSettingsException {
+    private void checkIfStringIsBlank(StringToCheck toCheck) throws
+            InvalidSettingsException {
         String label = toCheck.getLabel();
         String value = toCheck.getValue();
 
@@ -189,7 +203,8 @@ public class SettingsService implements Closeable {
         }
     }
 
-    private void checkIfStringMatchPattern(StringToCheckPattern toCheckPattern) throws InvalidSettingsException {
+    private void checkIfStringMatchPattern(StringToCheckPattern toCheckPattern)
+            throws InvalidSettingsException {
         String label = toCheckPattern.getLabel();
         String value = toCheckPattern.getValue();
         String expectedPatternString = toCheckPattern.getPattern();
@@ -204,7 +219,8 @@ public class SettingsService implements Closeable {
         }
     }
 
-    private void checkIfIsPositive(int buildingNumber) throws InvalidSettingsException {
+    private void checkIfIsPositive(int buildingNumber) throws
+            InvalidSettingsException {
         boolean isPositive = buildingNumber > 0;
 
         if (!isPositive) {
@@ -214,7 +230,8 @@ public class SettingsService implements Closeable {
         }
     }
 
-    private void storeSettings(Settings newSettings) throws IOException {
+    private void storeSettings(Settings newSettings) throws IOException,
+            URISyntaxException {
         String fullName = newSettings.getFullName();
         String occupation = newSettings.getOccupation();
         String email = newSettings.getEmail();
@@ -229,22 +246,62 @@ public class SettingsService implements Closeable {
 
         Properties properties = getProperties();
         properties.setProperty("fullName", fullName);
+        logPropertyWasSet("fullName", fullName);
+
         properties.setProperty("occupation", occupation);
+        logPropertyWasSet("occupation", occupation);
+
         properties.setProperty("email", email);
+        logPropertyWasSet("email", email);
+
         properties.setProperty("companyName", companyName);
+        logPropertyWasSet("companyName", companyName);
+
         properties.setProperty("companyPhone", companyPhone);
+        logPropertyWasSet("companyPhone", companyPhone);
+
         properties.setProperty("companyStreet", companyStreet);
-        properties.setProperty("companyBuildingNumber", companyBuildingNumberAsString);
+        logPropertyWasSet("companyStreet", companyStreet);
+
+        properties.setProperty("companyBuildingNumber",
+                companyBuildingNumberAsString);
+        logPropertyWasSet("companyBuildingNumber", companyBuildingNumber);
+
         properties.setProperty("companyCity", companyCity);
+        logPropertyWasSet("companyCity", companyCity);
+
         properties.setProperty("companyCountry", companyCountry);
-        
-        properties.store(outputStream, "Budget Manager Settings");
+        logPropertyWasSet("companyCountry", companyCountry);
+
+        File configFile = new File(CONFIG_FILE_NAME);
+
+        try ( OutputStream outputStream = new FileOutputStream(configFile)) {
+            properties.store(outputStream, "Budget Manager Settings");
+        }
+    }
+
+    private void logPropertyWasSet(String propertyName, int value) {
+        String valueAsString = String.format("%d", value);
+        logPropertyWasSet(propertyName, valueAsString);
+    }
+
+    private void logPropertyWasSet(String propertyName, String value) {
+        String loggingMessage;
+        loggingMessage = String.format(
+                "Property %s was set to %s",
+                propertyName,
+                value);
+        logger.log(INFO, loggingMessage);
     }
 
     private Properties getProperties() throws IOException {
-        Properties properties = new Properties();
-        properties.load(inputStream);
-
-        return properties;
+        File configFile = new File(CONFIG_FILE_NAME);
+        
+        try ( InputStream inputStream = new FileInputStream(configFile)) {
+            Properties properties = new Properties();
+            properties.load(inputStream);
+            
+            return properties;
+        }
     }
 }

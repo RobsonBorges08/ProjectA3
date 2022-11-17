@@ -32,9 +32,7 @@ public class CancelHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent t) {
-        try {
-            SettingsService settingsService = new SettingsService();
-
+        try ( SettingsService settingsService = new SettingsService()) {
             if (settingsService.isApplicationConfigured()) {
                 FXMLLoader loader = new FXMLLoader(budgetRequestScreenFxmlURL);
                 Parent loadedFXML = loader.load();

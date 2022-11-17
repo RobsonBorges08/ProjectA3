@@ -41,8 +41,8 @@ public class SendRequestHandler implements EventHandler<ActionEvent> {
             Collection<ProductOnBudget> productList = productsTable.getItems();
             Collection<Supplier> supplierList = suppliersTable.getItems();
 
-            boolean thereIsProduct = productList.isEmpty();
-            boolean thereIsSupplier = supplierList.isEmpty();
+            boolean thereIsProduct = !(productList.isEmpty());
+            boolean thereIsSupplier = !(supplierList.isEmpty());
             boolean thereIsEnoughData = thereIsProduct && thereIsSupplier;
 
             if (!thereIsEnoughData) {
@@ -65,9 +65,8 @@ public class SendRequestHandler implements EventHandler<ActionEvent> {
 
             DialogService.showSuccessMessage("Pedidos de orçamento enviados!");
 
-        } catch (IOException | InvalidSettingsException | URISyntaxException |
-                NotEnoughDataException | MessagingException |
-                NumberFormatException exception) {
+        } catch (NumberFormatException | NotEnoughDataException | IOException | InvalidSettingsException |
+                URISyntaxException | MessagingException | NullPointerException exception) {
             DialogService.showErrorMessage(exception);
             Logger.getLogger(SendRequestHandler.class.getName())
                     .log(Level.SEVERE, null, exception);

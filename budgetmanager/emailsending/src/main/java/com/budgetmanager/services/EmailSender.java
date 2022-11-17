@@ -30,8 +30,7 @@ public class EmailSender implements Closeable {
 
     public EmailSender(Settings settings) throws IOException {
         Class factoryClass = getClass();
-        URL configurationFileURL = factoryClass.getResource(CONFIG_FILE_NAME);
-        this.inputStream = configurationFileURL.openStream();
+        this.inputStream = factoryClass.getResourceAsStream(CONFIG_FILE_NAME);
 
         EmailSessionFactory factory = new EmailSessionFactory(inputStream);
         this.session = factory.makeSession();
