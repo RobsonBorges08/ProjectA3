@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 import static java.util.logging.Level.INFO;
 
-public class SettingsService implements Closeable {
+public class SettingsService {
 
     private final String CONFIG_FILE_NAME = "budgetmanager.properties";
     private final Logger logger;
@@ -23,12 +23,7 @@ public class SettingsService implements Closeable {
         this.logger = Logger.getLogger(SettingsService.class.getName());
     }
 
-    @Override
-    public void close() throws IOException {
-    }
-
-    public Settings getSettings() throws IOException, InvalidSettingsException,
-            NumberFormatException {
+    public Settings getSettings() throws IOException, InvalidSettingsException {
         Properties properties = getProperties();
 
         String fullName = properties.getProperty("fullName");
