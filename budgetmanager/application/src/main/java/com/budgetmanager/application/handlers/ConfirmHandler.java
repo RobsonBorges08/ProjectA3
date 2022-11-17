@@ -35,7 +35,7 @@ public class ConfirmHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent t) {
-        try {
+        try ( SettingsService settingsService = new SettingsService()) {
             TextField fullNameField = settingsForm.getFullNameField();
             TextField occupationField = settingsForm.getOccupationField();
             TextField emailField = settingsForm.getEmailField();
@@ -72,7 +72,6 @@ public class ConfirmHandler implements EventHandler<ActionEvent> {
             newSettings.setCompanyCity(companyCity);
             newSettings.setCompanyCountry(companyCountry);
 
-            SettingsService settingsService = new SettingsService();
             settingsService.updateSettings(newSettings);
 
             FXMLLoader loader = new FXMLLoader(budgetRequestScreenFxmlURL);
