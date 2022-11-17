@@ -8,7 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane id="AnchorPane" prefHeight="381.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetmanager.application.controllers.SearchProductController">
+
+<AnchorPane id="AnchorPane" prefHeight="381.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetmanager.application.controllers.ProductCreationController">
+
    <children>
       <Label layoutX="46.0" layoutY="116.0" text="Descrição do produto" />
       <Label layoutX="48.0" layoutY="248.0" text="Categoria" />
