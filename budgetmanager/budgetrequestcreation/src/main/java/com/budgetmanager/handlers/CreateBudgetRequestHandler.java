@@ -26,10 +26,9 @@ public class CreateBudgetRequestHandler {
             throws IOException, InvalidSettingsException, URISyntaxException {
         this.budgetRequestsData = budgetRequestsData;
 
-        try ( SettingsService service = new SettingsService()) {
-            Settings settings = service.getSettings();
-            this.sender = new EmailSender(settings);
-        }
+        SettingsService service = new SettingsService();
+        Settings settings = service.getSettings();
+        this.sender = new EmailSender(settings);
     }
 
     public void handle(ActionEvent t) throws MessagingException, IOException {
