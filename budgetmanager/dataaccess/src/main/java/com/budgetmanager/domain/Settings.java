@@ -16,7 +16,7 @@ public class Settings {
     private String companyCity;
     private String companyCountry;
 
-    public boolean isConfigured() throws NumberFormatException {
+    public boolean isConfigured() {
         Set<String> settings = new HashSet<>();
         settings.add(occupation);
         settings.add(email);
