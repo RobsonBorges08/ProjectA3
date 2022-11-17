@@ -11,9 +11,9 @@
 <AnchorPane id="AnchorPane" prefHeight="381.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetmanager.application.controllers.SearchProductController">
    <children>
       <Label layoutX="47.0" layoutY="160.0" text="Descrição do produto" />
-      <Label layoutX="45.0" layoutY="267.0" text="Categoria" />
+      <Label layoutX="45.0" layoutY="266.0" text="Categoria" />
       <Button layoutX="518.0" layoutY="323.0" mnemonicParsing="false" text="Sair" />
-      <ComboBox layoutX="46.0" layoutY="283.0" prefWidth="150.0" />
+      <ComboBox layoutX="46.0" layoutY="282.0" prefWidth="150.0" />
       <Label layoutX="46.0" layoutY="32.0" text="PESQUISA DE PRODUTO">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -27,6 +27,6 @@
       <Label layoutX="46.0" layoutY="115.0" text="Nome do Produto" />
       <TextField layoutX="46.0" layoutY="131.0" />
       <Button layoutX="198.0" layoutY="131.0" mnemonicParsing="false" text="Pesquisar" />
-      <Button layoutX="199.0" layoutY="283.0" mnemonicParsing="false" text="Pesquisar" />
+      <Button layoutX="199.0" layoutY="282.0" mnemonicParsing="false" text="Pesquisar" />
    </children>
 </AnchorPane>
