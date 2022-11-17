@@ -35,7 +35,9 @@ public class ConfirmHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent t) {
-        try ( SettingsService settingsService = new SettingsService()) {
+        try {
+            SettingsService settingsService = new SettingsService();
+
             TextField fullNameField = settingsForm.getFullNameField();
             TextField occupationField = settingsForm.getOccupationField();
             TextField emailField = settingsForm.getEmailField();
