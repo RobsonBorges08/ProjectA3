@@ -10,7 +10,7 @@ public class ProductListView {
 
     private final Session session;
 
-    public ProductListView(Session session) {
+    public ProductListView() {
         this.session = DatabaseSessionFactory.makeSession();
     }
 

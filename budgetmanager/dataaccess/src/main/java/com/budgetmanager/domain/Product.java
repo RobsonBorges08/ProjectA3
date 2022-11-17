@@ -1,6 +1,5 @@
 package com.budgetmanager.domain;
 
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import lombok.Data;

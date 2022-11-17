@@ -7,13 +7,14 @@
         <version>0.1.0</version>
     </parent>
     <groupId>com.budgetmanager</groupId>
-    <artifactId>emailsending</artifactId>
+    <artifactId>categorylisting</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.2</version>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.1.4.Final</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.budgetmanager</groupId>
@@ -21,16 +22,10 @@
             <version>0.1.0</version>
             <type>jar</type>
         </dependency>
-        <dependency>
-            <groupId>com.budgetmanager</groupId>
-            <artifactId>settings</artifactId>
-            <version>0.1.0</version>
-            <type>jar</type>
-        </dependency>
     </dependencies>
     <properties>
-        <maven.compiler.source>18</maven.compiler.source>
-        <maven.compiler.target>18</maven.compiler.target>
-        <exec.mainClass>com.budgetmanager.emailsending.Emailsending</exec.mainClass>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+        <exec.mainClass>com.budgetmanager.categorylisting.Categorylisting</exec.mainClass>
     </properties>
 </project>

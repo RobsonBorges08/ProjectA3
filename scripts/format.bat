@@ -1,0 +1,1 @@
+for /r %%i in (*.java) do java -jar %1 %%i
