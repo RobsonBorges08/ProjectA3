@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 
 public class CallProductCreationHandler implements EventHandler<ActionEvent> {
 
-    private URL productCreationFxmlPath;
-    private Stage productCreationPopUp;
+    private final URL productCreationFxmlPath;
+    private final Stage productCreationPopUp;
 
     public CallProductCreationHandler() {
         Class controllerClass = ProductCreationController.class;
@@ -36,10 +36,10 @@ public class CallProductCreationHandler implements EventHandler<ActionEvent> {
             productCreationPopUp.setScene(productCreationScene);
             productCreationPopUp.show();
 
-        } catch (IOException ex) {
-            DialogService.showErrorMessage(ex.getCause().toString());
+        } catch (IOException exception) {
+            DialogService.showErrorMessage(exception);
             Logger.getLogger(CallProductCreationHandler.class.getName())
-                    .log(Level.SEVERE, null, ex);
+                    .log(Level.SEVERE, null, exception);
         }
     }
 

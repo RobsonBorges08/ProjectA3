@@ -35,7 +35,7 @@ public class SwitchToSettingsHandler implements EventHandler<ActionEvent> {
             App.setRoot(loadedFXML);
         } catch (IOException ex) {
             DialogService.showErrorMessage(ex);
-            Logger.getLogger(CallProductCreationHandler.class.getName())
+            Logger.getLogger(SwitchToSettingsHandler.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
     }

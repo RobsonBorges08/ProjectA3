@@ -11,9 +11,13 @@ import com.budgetmanager.domain.Category;
 import com.budgetmanager.domain.Product;
 import com.budgetmanager.domain.ReadOnlyProduct;
 import com.budgetmanager.domain.Supplier;
+import java.io.Closeable;
 import java.util.List;
+import java.util.logging.Logger;
 
-public class UnitOfWork {
+import static java.util.logging.Level.INFO;
+
+public class UnitOfWork implements Closeable {
 
     private final ProductRepository products;
     private final ReadOnlyProductRepository readOnlyProducts;
@@ -21,34 +25,53 @@ public class UnitOfWork {
     private final CategoryRepository categories;
     private final Session session;
     private Transaction transaction;
+    private final Logger logger;
 
     public UnitOfWork() {
         this.session = DatabaseSessionFactory.makeSession();
-        
+
         this.products = new ProductRepository(session);
         this.readOnlyProducts = new ReadOnlyProductRepository(session);
         this.suppliers = new SupplierRepository(session);
         this.categories = new CategoryRepository(session);
+
+        Class currentClass = UnitOfWork.class;
+        this.logger = Logger.getLogger(currentClass.getName());
     }
 
     public void createProduct(Product newProduct) {
-        transaction = session.beginTransaction();
+        beginTransaction();
         products.create(newProduct);
+        logNewRegistry("Product", newProduct.getId());
     }
-    
+
     public void createReadOnlyProduct(ReadOnlyProduct newProduct) {
-        transaction = session.beginTransaction();
+        beginTransaction();
         readOnlyProducts.create(newProduct);
+        logNewRegistry("Read only product", newProduct.getId());
     }
 
     public void createSupplier(Supplier newSupplier) {
-        transaction = session.beginTransaction();
+        beginTransaction();
         suppliers.create(newSupplier);
+        logNewRegistry("Supplier", newSupplier.getId());
     }
 
     public void createCategory(Category newCategory) {
-        transaction = session.beginTransaction();
+        beginTransaction();
         categories.create(newCategory);
+        logNewRegistry("Category", newCategory.getId());
+    }
+    
+    private void beginTransaction() {
+        if (transaction == null) {
+            transaction = session.beginTransaction();
+        }
+    }
+
+    private void logNewRegistry(String modelName, int id) {
+        String logMessage = String.format("%s %d regitered", modelName, id);
+        logger.log(INFO, logMessage);
     }
 
     public Product getProductById(int productId) throws ProductNotFoundException {
@@ -63,7 +86,8 @@ public class UnitOfWork {
         );
     }
 
-    public Supplier getSupplierById(int supplierId) throws SupplierNotFoundException {
+    public Supplier getSupplierById(int supplierId) throws
+            SupplierNotFoundException {
         Supplier foundSupplier = suppliers.getById(supplierId);
 
         if (foundSupplier != null) {
@@ -75,7 +99,8 @@ public class UnitOfWork {
         );
     }
 
-    public Category getCategoryById(int categoryId) throws CategoryNotFoundException {
+    public Category getCategoryById(int categoryId) throws
+            CategoryNotFoundException {
         Category foundCategory = categories.getById(categoryId);
 
         if (foundCategory != null) {
@@ -87,7 +112,8 @@ public class UnitOfWork {
         );
     }
 
-    public Category getCategoryByName(String categoryName) throws CategoryNotFoundException {
+    public Category getCategoryByName(String categoryName) throws
+            CategoryNotFoundException {
         Category foundCategory = categories.getByName(categoryName);
 
         if (foundCategory != null) {
@@ -113,8 +139,10 @@ public class UnitOfWork {
 
     public void commit() {
         transaction.commit();
+        logger.log(INFO, "Data commited");
     }
 
+    @Override
     public void close() {
         if (transaction.isActive()) {
             transaction.rollback();
