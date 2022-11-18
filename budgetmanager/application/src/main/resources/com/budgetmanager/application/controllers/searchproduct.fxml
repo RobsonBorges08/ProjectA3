@@ -9,13 +9,16 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="381.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetmanager.application.controllers.SearchProductController">
-
+   <children>
       <Label layoutX="46.0" layoutY="32.0" text="PESQUISA DE PRODUTO">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-
+      <Label layoutX="50.0" layoutY="143.0" text="Descrição do produto" />
+      <Label layoutX="49.0" layoutY="262.0" text="Categoria" />
+      <Button layoutX="489.0" layoutY="330.0" mnemonicParsing="false" text="Cancelar" />
+      <ComboBox layoutX="50.0" layoutY="281.0" prefWidth="150.0" />
       <Label layoutX="46.0" layoutY="68.0" text="Produto" />
       <TextField layoutX="46.0" layoutY="84.0" prefHeight="25.0" prefWidth="190.0" />
       <Button layoutX="245.0" layoutY="84.0" mnemonicParsing="false" text="Pesquisar" />

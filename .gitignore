@@ -19,4 +19,6 @@
 *.tar.gz
 *.rar
 javafx-sdk-19/
+mysql-8.0.31-winx64/
 target/
+budgetmanager.properties

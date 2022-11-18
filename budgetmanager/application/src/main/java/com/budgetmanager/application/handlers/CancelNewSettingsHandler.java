@@ -21,11 +21,11 @@ import javafx.scene.Parent;
  *
  * @author Cliente
  */
-public class CancelHandler implements EventHandler<ActionEvent> {
+public class CancelNewSettingsHandler implements EventHandler<ActionEvent> {
 
     private final URL budgetRequestScreenFxmlURL;
 
-    public CancelHandler(Class controllerClass) throws IOException {
+    public CancelNewSettingsHandler(Class controllerClass) throws IOException {
         this.budgetRequestScreenFxmlURL = controllerClass.getResource(
                 "budgetrequest.fxml");
     }
@@ -44,11 +44,11 @@ public class CancelHandler implements EventHandler<ActionEvent> {
 
         } catch (IOException | URISyntaxException ex) {
             DialogService.showErrorMessage(ex);
-            Logger.getLogger(CancelHandler.class.getName()).log(Level.SEVERE,
+            Logger.getLogger(CancelNewSettingsHandler.class.getName()).log(Level.SEVERE,
                     null, ex);
         } catch (NumberFormatException ex) {
             DialogService.showErrorMessage("Aplicação não configurada");
-            Logger.getLogger(CancelHandler.class.getName()).log(Level.SEVERE,
+            Logger.getLogger(CancelNewSettingsHandler.class.getName()).log(Level.SEVERE,
                     null, ex);
         }
     }

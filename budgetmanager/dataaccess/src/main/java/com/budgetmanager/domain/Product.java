@@ -1,26 +1,27 @@
 package com.budgetmanager.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import lombok.Data;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "products")
 @Data
 public class Product {
+
     @Id
     @GeneratedValue
     @Column(name = "id")
     private int id;
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 }

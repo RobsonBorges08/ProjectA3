@@ -4,7 +4,6 @@
  */
 package com.budgetmanager.application.handlers;
 
-import com.budgetmanager.application.controllers.ProductCreationController;
 import com.budgetmanager.application.controllers.SupplierCreationController;
 import com.budgetmanager.application.services.DialogService;
 import java.io.IOException;
@@ -24,8 +23,9 @@ import javafx.stage.Stage;
  */
 public class CallSupplierCreationHandler implements EventHandler<ActionEvent> {
 
-    private URL supplierCreationFxmlPath;
-    private Stage supplierCreationPopUp;
+    private final URL supplierCreationFxmlPath;
+    private final Stage supplierCreationPopUp;
+    private final Logger logger;
 
     public CallSupplierCreationHandler() {
         Class controllerClass = SupplierCreationController.class;
@@ -33,6 +33,8 @@ public class CallSupplierCreationHandler implements EventHandler<ActionEvent> {
                 "suppliercreation.fxml");
 
         this.supplierCreationPopUp = new Stage();
+        this.logger = Logger.getLogger(CallSupplierCreationHandler.class
+                .getName());
     }
 
     @Override
@@ -47,9 +49,8 @@ public class CallSupplierCreationHandler implements EventHandler<ActionEvent> {
 
         } catch (IOException ex) {
             DialogService.showErrorMessage(ex.getCause().toString());
-            Logger.getLogger(CallProductCreationHandler.class.getName())
-                    .log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

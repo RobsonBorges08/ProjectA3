@@ -8,16 +8,13 @@ import com.budgetmanager.UnitOfWork;
 import com.budgetmanager.core.exceptions.InvalidCategoryException;
 import com.budgetmanager.domain.Category;
 import com.budgetmanager.services.CategoryFactory;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 /**
  *
  * @author Lucas
  */
-public class CreateCategoryHandler implements EventHandler<ActionEvent> {
+public class CreateCategoryHandler {
 
     private final String categoryName;
     private final UnitOfWork unitOfWork;
@@ -27,17 +24,15 @@ public class CreateCategoryHandler implements EventHandler<ActionEvent> {
         this.categoryName = categoryName;
     }
 
-    @Override
-    public void handle(ActionEvent t) {
-        try {
-            CategoryFactory factory = new CategoryFactory();
+    public Category handle(ActionEvent t) throws InvalidCategoryException {
+        CategoryFactory factory = new CategoryFactory();
 
-            Category newCategory = factory.makeCategory(categoryName);
-            unitOfWork.createCategory(newCategory);
-
-        } catch (InvalidCategoryException ex) {
-            Logger.getLogger(CreateCategoryHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Category newCategory = factory.makeCategory(categoryName);
+        unitOfWork.createCategory(newCategory);
+        unitOfWork.commit();
+        unitOfWork.close();
+        
+        return newCategory;
     }
 
 }

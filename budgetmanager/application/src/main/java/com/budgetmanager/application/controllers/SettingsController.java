@@ -5,13 +5,13 @@
 package com.budgetmanager.application.controllers;
 
 import com.budgetmanager.application.forms.SettingsForm;
-import com.budgetmanager.application.handlers.CancelHandler;
+import com.budgetmanager.application.handlers.CancelNewSettingsHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import com.budgetmanager.application.handlers.ConfirmHandler;
+import com.budgetmanager.application.handlers.ConfirmNewSettingsHandler;
 import com.budgetmanager.application.services.DialogService;
 import com.budgetmanager.core.exceptions.InvalidSettingsException;
 import com.budgetmanager.domain.Settings;
@@ -57,11 +57,11 @@ public class SettingsController implements Initializable {
 
         } catch (IOException | URISyntaxException | InvalidSettingsException ex) {
             DialogService.showErrorMessage(ex);
-            Logger.getLogger(ConfirmHandler.class.getName()).log(Level.SEVERE,
+            Logger.getLogger(SettingsController.class.getName()).log(Level.SEVERE,
                     null, ex);
         } catch (NumberFormatException ex) {
             DialogService.showErrorMessage("Número do prédio invalido");
-            Logger.getLogger(ConfirmHandler.class.getName()).log(Level.SEVERE,
+            Logger.getLogger(SettingsController.class.getName()).log(Level.SEVERE,
                     null, ex);
         }
     }
@@ -120,11 +120,11 @@ public class SettingsController implements Initializable {
 
         EventHandler<ActionEvent> confirmHandler;
         EventHandler<ActionEvent> cancelHandler;
-        confirmHandler = new ConfirmHandler(SettingsController.class,
+        confirmHandler = new ConfirmNewSettingsHandler(SettingsController.class,
                 settingsForm);
         confirmButton.setOnAction(confirmHandler);
 
-        cancelHandler = new CancelHandler(SettingsController.class);
+        cancelHandler = new CancelNewSettingsHandler(SettingsController.class);
         cancelButton.setOnAction(cancelHandler);
     }
 }

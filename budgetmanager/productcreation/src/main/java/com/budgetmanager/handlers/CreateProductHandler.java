@@ -8,13 +8,10 @@ import com.budgetmanager.domain.ReadOnlyProduct;
 import com.budgetmanager.domain.product.ProductData;
 import com.budgetmanager.services.ProductFactory;
 import com.budgetmanager.services.ReadOnlyProductFactory;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 
-public class CreateProductHandler implements EventHandler<ActionEvent> {
+public class CreateProductHandler {
     
     private final UnitOfWork unitOfWork;
     private final ProductData productData;
@@ -23,21 +20,21 @@ public class CreateProductHandler implements EventHandler<ActionEvent> {
         this.unitOfWork = new UnitOfWork();
         this.productData = productData;
     }
-    
-    @Override
-    public void handle(ActionEvent t) {
-        try {
-            ProductFactory productFactory = new ProductFactory(unitOfWork);
-            ReadOnlyProductFactory readOnlyProductFactory = new ReadOnlyProductFactory();
-            
-            Product newProduct = productFactory.makeProduct(productData);
-            ReadOnlyProduct readOnlyProduct = readOnlyProductFactory.makeProduct(newProduct);
-            
-            unitOfWork.createProduct(newProduct);
-            unitOfWork.createReadOnlyProduct(readOnlyProduct);
-        } catch (CategoryNotFoundException | InvalidProductException ex) {
-            Logger.getLogger(CreateProductHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    public Product handle(ActionEvent t) throws CategoryNotFoundException, InvalidProductException {
+        ProductFactory productFactory = new ProductFactory(unitOfWork);
+        ReadOnlyProductFactory readOnlyProductFactory = new ReadOnlyProductFactory();
+
+        Product newProduct = productFactory.makeProduct(productData);
+        unitOfWork.createProduct(newProduct);
+        
+        ReadOnlyProduct readOnlyProduct = readOnlyProductFactory.makeProduct(newProduct);
+        unitOfWork.createReadOnlyProduct(readOnlyProduct);
+        
+        unitOfWork.commit();
+        unitOfWork.close();
+        
+        return newProduct;
     }
     
 }
