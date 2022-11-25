@@ -17,3 +17,6 @@ powershell Expand-Archive %JFXSDK_ZIP% -DestinationPath . -Force
 powershell Expand-Archive %MYSQL_ZIP% -DestinationPath . -Force
 
 %PATH_TO_MYSQL% --initialize
+
+cd budgetmanager
+mvn clean package && cd ..
