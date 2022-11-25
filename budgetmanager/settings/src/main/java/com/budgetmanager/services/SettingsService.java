@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.util.logging.Level.INFO;
+import static java.util.logging.Level.WARNING;
 
 public class SettingsService {
 
@@ -24,56 +25,61 @@ public class SettingsService {
     }
 
     public Settings getSettings() throws IOException, InvalidSettingsException {
-        Properties properties = getProperties();
+        try {
+            Properties properties = getProperties();
 
-        String fullName = properties.getProperty("fullName");
-        logPropertyWasLoaded("fullName", fullName);
+            String fullName = properties.getProperty("fullName");
+            logPropertyWasLoaded("fullName", fullName);
 
-        String occupation = properties.getProperty("occupation");
-        logPropertyWasLoaded("occupation", occupation);
+            String occupation = properties.getProperty("occupation");
+            logPropertyWasLoaded("occupation", occupation);
 
-        String email = properties.getProperty("email");
-        logPropertyWasLoaded("email", email);
+            String email = properties.getProperty("email");
+            logPropertyWasLoaded("email", email);
 
-        String companyName = properties.getProperty("companyName");
-        logPropertyWasLoaded("companyName", companyName);
+            String companyName = properties.getProperty("companyName");
+            logPropertyWasLoaded("companyName", companyName);
 
-        String companyPhone = properties.getProperty("companyPhone");
-        logPropertyWasLoaded("companyPhone", companyPhone);
+            String companyPhone = properties.getProperty("companyPhone");
+            logPropertyWasLoaded("companyPhone", companyPhone);
 
-        String companyStreet = properties.getProperty("companyStreet");
-        logPropertyWasLoaded("companyStreet", companyStreet);
+            String companyStreet = properties.getProperty("companyStreet");
+            logPropertyWasLoaded("companyStreet", companyStreet);
 
-        String companyBuildingNumberAsString;
-        companyBuildingNumberAsString = properties.getProperty(
-                "companyBuildingNumber");
-        logPropertyWasLoaded("companyBuildingNumber",
-                companyBuildingNumberAsString);
+            String companyBuildingNumberAsString;
+            companyBuildingNumberAsString = properties.getProperty(
+                    "companyBuildingNumber");
+            logPropertyWasLoaded("companyBuildingNumber",
+                    companyBuildingNumberAsString);
 
-        int companyBuildingNumber = Integer.parseInt(
-                companyBuildingNumberAsString);
-        String companyCity = properties.getProperty("companyCity");
-        logPropertyWasLoaded("companyCity", companyCity);
+            int companyBuildingNumber = Integer.parseInt(
+                    companyBuildingNumberAsString);
+            String companyCity = properties.getProperty("companyCity");
+            logPropertyWasLoaded("companyCity", companyCity);
 
-        String companyCountry = properties.getProperty("companyCountry");
-        logPropertyWasLoaded("companyCountry", companyCountry);
+            String companyCountry = properties.getProperty("companyCountry");
+            logPropertyWasLoaded("companyCountry", companyCountry);
 
-        Settings settings = new Settings();
-        settings.setFullName(fullName);
-        settings.setOccupation(occupation);
-        settings.setEmail(email);
-        settings.setCompanyName(companyName);
-        settings.setCompanyPhone(companyPhone);
-        settings.setCompanyStreet(companyStreet);
-        settings.setCompanyBuildingNumber(companyBuildingNumber);
-        settings.setCompanyCity(companyCity);
-        settings.setCompanyCountry(companyCountry);
+            Settings settings = new Settings();
+            settings.setFullName(fullName);
+            settings.setOccupation(occupation);
+            settings.setEmail(email);
+            settings.setCompanyName(companyName);
+            settings.setCompanyPhone(companyPhone);
+            settings.setCompanyStreet(companyStreet);
+            settings.setCompanyBuildingNumber(companyBuildingNumber);
+            settings.setCompanyCity(companyCity);
+            settings.setCompanyCountry(companyCountry);
 
-        if (settings.isConfigured()) {
-            return settings;
+            if (settings.isConfigured()) {
+                return settings;
+            }
+
+            throw new InvalidSettingsException("Application not configured");
+
+        } catch (NumberFormatException exception) {
+            throw new InvalidSettingsException("Application not configured");
         }
-
-        throw new InvalidSettingsException("Application not configured");
     }
 
     private void logPropertyWasLoaded(String propertyName, String value) {
@@ -291,12 +297,18 @@ public class SettingsService {
 
     private Properties getProperties() throws IOException {
         File configFile = new File(CONFIG_FILE_NAME);
-        
+        Properties properties = new Properties();
+
         try ( InputStream inputStream = new FileInputStream(configFile)) {
-            Properties properties = new Properties();
             properties.load(inputStream);
-            
+
             return properties;
+        } catch (FileNotFoundException exception) {
+            String loggingMessage = String.format("File %s not found",
+                    CONFIG_FILE_NAME);
+            logger.log(WARNING, loggingMessage);
         }
+
+        return properties;
     }
 }
