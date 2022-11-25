@@ -16,7 +16,7 @@ public class SupplierListView {
 
     public List<Supplier> list() {
         String readingQueryString = (
-                "SELECT tradingName, companyName, city, country "
+                "SELECT * "
                 + "FROM suppliers "
                 + "ORDER BY tradingName"
         );
@@ -29,7 +29,7 @@ public class SupplierListView {
     
     public List<Supplier> filterByTradingName(String keywords) {
         String readingQueryString = (
-                "SELECT tradingName, companyName, city, country "
+                "SELECT * "
                 + "FROM suppliers "
                 + "WHERE tradingName LIKE '%" + keywords + "%' "
                 + "ORDER BY tradingName"

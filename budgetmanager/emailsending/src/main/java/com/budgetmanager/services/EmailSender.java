@@ -139,7 +139,7 @@ public class EmailSender implements Closeable {
         message.setFrom(senderEmail);
         message.addRecipient(Message.RecipientType.TO, recipientAddress);
         message.setSubject("Pedido de orçamento");
-        message.setText(fullMessage);
+        message.setContent(fullMessage, "text/html");
         
         Transport.send(message);
     }

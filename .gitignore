@@ -10,7 +10,7 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package Files
 *.jar
 *.war
 *.nar
@@ -22,3 +22,4 @@ javafx-sdk-19/
 mysql-8.0.31-winx64/
 target/
 budgetmanager.properties
+MailHog_windows_amd64.exe
